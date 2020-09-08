@@ -1,0 +1,10 @@
+{
+    "login_button": "li.login",
+    "signup_button": "input",
+    "image_url_pattern": "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+%]|[!*()\\,]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",
+    "get_images_script":"return Array.from(document.querySelectorAll(\".post_content * img\")).map(x=>x.currentSrc);",
+    "unfold":"div.post_content_expand",
+    "unfold_script":"document.querySelectorAll(\".post_content_expand span\").forEach(s => s.click());",
+    "next":"a.next",
+    "scroll_script": "window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;"
+}

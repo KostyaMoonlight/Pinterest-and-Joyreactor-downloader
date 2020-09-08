@@ -1,0 +1,6 @@
+{
+    "login_button": "button.RCK.Hsu.USg.adn.czT.F10.xD4.fZz.hUC.a_A.gpV.hNT.BG7.NTm.KhY",
+    "signup_button": "button.red.SignupButton.active",
+    "image_url_pattern": "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*()\\,]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",
+    "scroll_script": "window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;"
+}

@@ -1,0 +1,39 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: osx-64
+astroid=2.4.2=py37_0
+brotlipy=0.7.0=py37haf1e3a3_1000
+ca-certificates=2020.7.22=0
+certifi=2020.6.20=py37_0
+cffi=1.14.2=py37hed5b41f_0
+click=7.1.2=py_0
+cryptography=3.1=py37hddc9c9b_0
+idna=2.10=py_0
+isort=5.4.2=py37_0
+lazy-object-proxy=1.4.3=py37h1de35cc_0
+libcxx=10.0.0=1
+libedit=3.1.20191231=h1de35cc_1
+libffi=3.3=hb1e8313_2
+mccabe=0.6.1=py37_1
+ncurses=6.2=h0a44026_1
+openssl=1.1.1g=h1de35cc_0
+pip=20.2.2=py37_0
+pycparser=2.20=py_2
+pylint=2.6.0=py37_0
+pyopenssl=19.1.0=py_1
+pysocks=1.7.1=py37_0
+python=3.7.9=h26836e1_0
+readline=8.0=h1de35cc_0
+selenium=3.141.0=py37h1de35cc_0
+setuptools=49.6.0=py37_0
+six=1.15.0=py_0
+sqlite=3.33.0=hffcf06c_0
+tk=8.6.10=hb0a8c7a_0
+toml=0.10.1=py_0
+tqdm=4.48.2=py_0
+typed-ast=1.4.1=py37h1de35cc_0
+urllib3=1.25.10=py_0
+wheel=0.35.1=py_0
+wrapt=1.11.2=py37h1de35cc_0
+xz=5.2.5=h1de35cc_0
+zlib=1.2.11=h1de35cc_3
