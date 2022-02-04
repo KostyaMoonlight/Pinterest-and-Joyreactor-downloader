@@ -2,5 +2,11 @@
     "login_button": "button.RCK.Hsu.USg.adn.czT.F10.xD4.fZz.hUC.a_A.gpV.hNT.BG7.NTm.KhY",
     "signup_button": "button.red.SignupButton.active",
     "image_url_pattern": "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*()\\,]|(?:%[0-9a-fA-F][0-9a-fA-F]))+",
-    "scroll_script": "window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;"
+    "scroll_script": "window.scrollTo(0, document.body.scrollHeight);var lenOfPage=document.body.scrollHeight;return lenOfPage;",
+    "mini_scroll_script": "window.scrollTo(0, {to});var lenOfPage=document.body.scrollHeight;return lenOfPage;",
+    "page_size":"return document.body.scrollHeight;",
+    "scroll_size":500,
+    "positionY":"return window.scrollY;",
+    "get_scroll_size":"return window.innerHeight;",
+    "get_images_script":"return Array.from(document.querySelectorAll(\".hCL.kVc.L4E.MIw\")).map(x=>x.src);"
 }

@@ -11,7 +11,7 @@ from utils import load_cred
 from browser import Browser, JoyrectorBrowser
 from image_downloader import ImageDownloader, PinterestImageDownloader, JoyreactorImageDownloader
 
-
+os.makedirs('logs', exist_ok=True)
 logging.basicConfig(filename="logs/logs.ini",level=logging.INFO)
 
 
@@ -19,6 +19,7 @@ def download(source, scroll_limit, path_to_save, cred_path, meta_path, log_path,
     browser = _browser(source, meta_path)  
     if cred_path:
         browser.login(cred_path)
+    os.makedirs(os.path.dirname(log_path), exist_ok=True)
     urls = browser.collect_urls(scroll_limit)
     image_downloader = downloader(urls, log_path, path_to_save)
     image_downloader.download()

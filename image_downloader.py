@@ -38,6 +38,9 @@ class ImageDownloader:
             for url in self.urls:
                 f.write(f"{url}\n")
 
+    def _restore_image_path(self, url):
+        return url
+
     def __download_images(self):
         if not os.path.exists(self.path_to_save):
             os.mkdir(self.path_to_save)
@@ -45,7 +48,13 @@ class ImageDownloader:
             try:
                 urllib.request.urlretrieve(url, f"{self.path_to_save}/{str(i)}-image.{url.split('.')[-1]}")
             except:
-                logging.warning(f"Link({url}) is broken.") 
+                logging.warning(f"Link({url}) is broken.")       
+                try:
+                    urllib.request.urlretrieve(self._restore_image_path(url), f"{self.path_to_save}/{str(i)}-image.{url.split('.')[-1]}")      
+                except:
+                    logging.warning(f"Link({url}) is broken.")       
+                    
+                
         logging.info("Images downloded.")
 
 class PinterestImageDownloader(ImageDownloader):
@@ -54,7 +63,7 @@ class PinterestImageDownloader(ImageDownloader):
 
     def _filter_images(self):
         for i in range(len(self.urls)):
-            if(self.urls[i][-4:]!=".jpg" or "75x75_RS" in self.urls[i]):
+            if(self.urls[i][-4:]!=".jpg" or "_RS" in self.urls[i]):
                 self.urls[i]= ""
         print(len(self.urls))
         self.urls = list(set(self.urls))
@@ -63,9 +72,18 @@ class PinterestImageDownloader(ImageDownloader):
         logging.info(f"Collected {len(self.urls)} urls.")
        
 
+    def _restore_image_path(self, url):
+        return self.urls_backup[url]
+
     def _get_full_size_images(self):
+        self.urls_backup = {}
+        self.original_images = list(self.urls)
         for i in range(len(self.urls)):
-            self.urls[i]=re.sub('.com/.*?/','.com/originals/',self.urls[i],flags=re.DOTALL)
+            #TODO: Validate      
+            original = self.urls[i]
+            if '/originals/' not in self.urls[i]:
+                self.urls[i]=re.sub('.com/.*?/','.com/originals/',self.urls[i],flags=re.DOTALL)
+            self.urls_backup[self.urls[i]]=original
         
 
 class JoyreactorImageDownloader(ImageDownloader):

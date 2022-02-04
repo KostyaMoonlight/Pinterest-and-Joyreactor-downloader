@@ -12,7 +12,7 @@ class Browser:
     def __init__(self, source, meta_path):
         with open(meta_path, "r") as f:
             self.meta = json.load(f)
-        self.browser = webdriver.Firefox(executable_path='/usr/local/bin/geckodriver')
+        self.browser = webdriver.Firefox(executable_path='D:\\code\\drivers\\geckodriver.exe')
         self.browser.get(source)
 
     def login(self, cred_path):
@@ -31,21 +31,32 @@ class Browser:
     def _scroll(self):
         page_length = self.browser.execute_script(self.meta["scroll_script"])
         logging.info("Scrolling...")
+        time.sleep(1)
+        return page_length
+
+    def _mini_scroll(self, position):
+        page_length = self.browser.execute_script(self.meta["mini_scroll_script"]
+                                                  .format(to=int(position+self.scroll_size*0.95)))
+        logging.info("Scrolling...")
+        time.sleep(1)
         return page_length
 
     def collect_urls(self, scroll_limit):
-        page_length = self._scroll()
+        self.scroll_size = self.browser.execute_script(self.meta["get_scroll_size"])
+        page_length = self.browser.execute_script(self.meta["page_size"])
+        urls = set()
+        urls.update(re.findall(self.meta["image_url_pattern"], self.browser.page_source))
         match=False
-        urls = []
+        positionY = 0
         while(not match and scroll_limit): 
             scroll_limit = scroll_limit-1
-            current_page_lenght = page_length
-            time.sleep(5)
-            page_length = self._scroll()
-            urls.extend(re.findall(self.meta["image_url_pattern"], self.browser.page_source))
-            match = current_page_lenght==page_length
+            time.sleep(1)
+            page_length = self._mini_scroll(positionY)
+            positionY = self.browser.execute_script(self.meta["positionY"])
+            urls.update(re.findall(self.meta["image_url_pattern"], self.browser.page_source))
+            match =self.scroll_size*1.1+ positionY>=page_length
         logging.info("Urls collected.")
-        return urls
+        return list(urls)
 
     def __del__(self):
         self.browser.quit()
